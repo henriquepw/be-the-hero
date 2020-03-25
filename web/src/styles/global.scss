@@ -30,7 +30,8 @@ input, button, textarea {
   font: 400 1.8rem Roboto, sans-serif;
 }
 
-form input {
+form input,
+form textarea {
   width: 100%;
   height: 60px;
 
@@ -39,6 +40,14 @@ form input {
   border: 1px solid $border;
   border-radius: 8px;
   padding: 0 24px;
+}
+
+form textarea {
+  min-height: 140px;
+  resize: vertical;
+
+  padding: 16px 24px;
+  line-height: 24px;
 }
 
 button {

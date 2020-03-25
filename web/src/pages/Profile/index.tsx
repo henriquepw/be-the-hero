@@ -20,7 +20,7 @@ const Profile: FC = () => (
       </button>
     </header>
 
-    <h1>Cassos cadastrados</h1>
+    <h1>Casos cadastrados</h1>
 
     <ul>
       <li>
