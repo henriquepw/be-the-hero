@@ -2,8 +2,13 @@ import { Request, Response } from 'express';
 import db from '../../database';
 
 class IncidentController {
-  async index(_: Request, res: Response) {
-    const incidents = await db('incidents').select('*');
+  async index(req: Request, res: Response) {
+    const { page = 1, limit = 5 } = req.query;
+
+    const incidents = await db('incidents')
+      .limit(limit)
+      .offset((page - 1) * limit)
+      .select('*');
 
     return res.json(incidents);
   }
