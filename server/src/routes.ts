@@ -10,6 +10,9 @@ routes.get('/', (_, req) =>
 
 routes.route('/ongs').get(OngController.index).post(OngController.store);
 
-routes.route('/incidents').post(IncidentController.store);
+routes
+  .route('/incidents')
+  .get(IncidentController.index)
+  .post(IncidentController.store);
 
 export default routes;
