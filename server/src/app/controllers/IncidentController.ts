@@ -1,14 +1,40 @@
 import { Request, Response } from 'express';
+
 import db from '../../database';
 
 class IncidentController {
   async index(req: Request, res: Response) {
     const { page = 1, limit = 5 } = req.query;
 
-    const incidents = await db('incidents')
+    const [count] = await db('incidents').count();
+
+    const response = await db('incidents')
+      .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
       .limit(limit)
       .offset((page - 1) * limit)
-      .select('*');
+      .select([
+        'incidents.*',
+        'ongs.name',
+        'ongs.email',
+        'ongs.whatsapp',
+        'ongs.city',
+        'ongs.uf',
+      ]);
+
+    const incidents = response.map(incident => {
+      const { name, email, whatsapp, city, uf } = incident;
+
+      const ong = { name, email, whatsapp, city, uf };
+
+      return {
+        id: incident.id,
+        title: incident.title,
+        description: incident.description,
+        ong,
+      };
+    });
+
+    res.header('X-Total-Count', count['count(*)']);
 
     return res.json(incidents);
   }

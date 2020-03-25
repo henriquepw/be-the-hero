@@ -1,4 +1,6 @@
 import express from 'express';
+import cors from 'cors';
+
 import routes from './routes';
 
 class App {
@@ -7,14 +9,12 @@ class App {
   constructor() {
     this.server = express();
 
-    // this.database();
     this.middleware();
     this.routes();
   }
 
-  // private database() {}
-
   private middleware() {
+    this.server.use(cors());
     this.server.use(express.json());
   }
 
