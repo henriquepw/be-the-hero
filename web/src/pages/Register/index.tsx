@@ -16,7 +16,7 @@ const Register: FC = () => (
           os casos da sua ONG.
         </p>
 
-        <Link className="back-link" to="/register">
+        <Link className="back-link" to="/">
           <FiArrowLeft size={16} />
           Não tenho cadastro
         </Link>
