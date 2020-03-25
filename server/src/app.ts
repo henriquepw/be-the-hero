@@ -8,13 +8,15 @@ class App {
     this.server = express();
 
     // this.database();
-    // this.middleware();
+    this.middleware();
     this.routes();
   }
 
   // private database() {}
 
-  // private middleware() {}
+  private middleware() {
+    this.server.use(express.json());
+  }
 
   private routes() {
     this.server.use(routes);
