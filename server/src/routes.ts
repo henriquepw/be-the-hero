@@ -1,7 +1,12 @@
 import { Router } from 'express';
+import OngsController from './app/controllers/OngsController';
 
-const route = Router();
+const routes = Router();
 
-route.get('/', (_, req) => req.json({ message: 'Welcome to be the hero API' }));
+routes.get('/', (_, req) =>
+  req.json({ message: 'Welcome to be the hero API' }),
+);
 
-export default route;
+routes.route('/ongs').post(OngsController.store);
+
+export default routes;

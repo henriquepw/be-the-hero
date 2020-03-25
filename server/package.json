@@ -6,11 +6,7 @@
   "author": "@henry-ns",
   "scripts": {
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
-    "dev": "nodemon",
-    "start": "NODE_ENV=production pm2 start ./dist/server.js",
-    "pretest": "",
-    "test": "cross-env NODE_ENV=test jest",
-    "posttest": ""
+    "dev": "nodemon"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
