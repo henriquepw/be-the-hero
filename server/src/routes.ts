@@ -15,4 +15,6 @@ routes
   .get(IncidentController.index)
   .post(IncidentController.store);
 
+routes.delete('/incidents/:id', IncidentController.delete);
+
 export default routes;

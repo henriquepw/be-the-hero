@@ -21,6 +21,24 @@ class IncidentController {
 
     return res.json({ id });
   }
+
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
+    const ong_id = req.headers.authorization;
+
+    const incident = await db('incidents')
+      .where('id', id)
+      .select('ong_id')
+      .first();
+
+    if (incident.ong_id !== ong_id) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    await db('incidents').where('id', id).delete();
+
+    return res.status(204).send();
+  }
 }
 
 export default new IncidentController();
