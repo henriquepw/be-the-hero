@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
-  );
-}
+import Routes from './routes';
+
+const App: FC = () => (
+  <div className="App">
+    <Routes />
+  </div>
+);
 
 export default App;

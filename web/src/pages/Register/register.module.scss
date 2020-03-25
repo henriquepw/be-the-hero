@@ -1,0 +1,62 @@
+@import '../../styles/theme.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0 auto;
+  padding: 0 24px;
+
+  width: 100%;
+  max-width: 1120px;
+
+  height: 100vh;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 96px;
+
+    background-color: $primary-background;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+
+    section {
+      width: 100%;
+      max-width: 380px;
+
+      h1 {
+        margin: 64px 0 32px;
+        font-size: 3.2rem;
+      }
+
+      p {
+        font-size: 1.8rem;
+        line-height: 3.2rem;
+
+        color: $secundary-text;
+      }
+    }
+
+    form {
+      width: 100%;
+      max-width: 450px;
+
+      input {
+        margin-top: 8px;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+
+        input:first-of-type {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
