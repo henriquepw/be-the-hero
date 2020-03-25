@@ -1,0 +1,12 @@
+node_modules
+.env
+
+!.gitkeep
+!.keep
+
+dist
+
+yarn-error.log
+package-lock.json
+
+__tests__/database.sqlite
