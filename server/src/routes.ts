@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import OngsController from './app/controllers/OngsController';
+import OngController from './app/controllers/OngController';
+import IncidentController from './app/controllers/IncidentController';
 
 const routes = Router();
 
@@ -7,6 +8,8 @@ routes.get('/', (_, req) =>
   req.json({ message: 'Welcome to be the hero API' }),
 );
 
-routes.route('/ongs').get(OngsController.index).post(OngsController.store);
+routes.route('/ongs').get(OngController.index).post(OngController.store);
+
+routes.route('/incidents').post(IncidentController.store);
 
 export default routes;
