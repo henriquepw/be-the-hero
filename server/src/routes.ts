@@ -7,6 +7,6 @@ routes.get('/', (_, req) =>
   req.json({ message: 'Welcome to be the hero API' }),
 );
 
-routes.route('/ongs').post(OngsController.store);
+routes.route('/ongs').get(OngsController.index).post(OngsController.store);
 
 export default routes;
