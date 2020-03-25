@@ -4,9 +4,9 @@ module.exports = {
     es6: true,
   },
   extends: [
-    'react-app',
-    'airbnb',
+    // 'react-app',
     'plugin:react/recommended',
+    'airbnb',
     'prettier/react',
     'prettier/@typescript-eslint',
   ],
@@ -37,7 +37,7 @@ module.exports = {
     'arrow-parens': 'off',
     'prettier/prettier': 'error',
     'global-require': 'off',
-    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-unused-vars': 'off',
     'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
     'react/jsx-filename-extension': [
