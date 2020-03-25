@@ -70,6 +70,26 @@ button {
   }
 }
 
+.back-link {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+
+  color: #41414d;
+  font-size: 1.8rem;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+
+  svg {
+    color: $active;
+    margin-right: 8px;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 a,
 button {
   text-decoration: none;
