@@ -30,14 +30,28 @@ function Incidents() {
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [total, setTotal] = useState(0);
 
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  async function loadIncidents() {
+    if (loading) return;
+
+    if (total > 0 && incidents.length === total) return;
+
+    setLoading(true);
+
+    const response = await api.get('incidents', {
+      params: { page },
+    });
+
+    setIncidents([...incidents, ...response.data]);
+    setTotal(response.headers['x-total-count']);
+    setPage(page + 1);
+
+    setLoading(false);
+  }
+
   useEffect(() => {
-    async function loadIncidents() {
-      const response = await api.get('incidents');
-
-      setIncidents(response.data);
-      setTotal(response.headers['x-total-count']);
-    }
-
     loadIncidents();
   }, []);
 
@@ -62,11 +76,13 @@ function Incidents() {
       <FlatList
         data={incidents}
         style={styles.incidentList}
+        onEndReached={loadIncidents}
+        onEndReachedThreshold={0.2}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(incident) => String(incident.id)}
+        keyExtractor={(incident) => `${incident.title}_${incident.id}`}
         renderItem={({ item }) => (
           <View style={styles.incident}>
-            <Text style={styles.incidentProperty}>ONG</Text>
+            <Text style={styles.incidentProperty}>ONG${item.id}</Text>
             <Text style={styles.incidentValue}>{item.ong.name}</Text>
 
             <Text style={styles.incidentProperty}>Caso</Text>
