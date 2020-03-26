@@ -68,6 +68,7 @@ module.exports = {
           'module',
           '/^~/component/',
           '/^~/context/',
+          '/^~/services/',
           ['parent', 'sibling', 'index'],
           '/^~/(assets|res)/',
           '/^(~/|./)styles/',
