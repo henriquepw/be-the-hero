@@ -1,20 +1,35 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, Image, Text, TouchableOpacity, Linking } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as MailComposer from 'expo-mail-composer';
 
 import logo from '../../assets/logo.png';
+import { Incident } from '../Incidents';
 
 import styles from './styles';
 
-const message = 'Olá APAD, estou entrando em contato pois gostaria de ajudar no caso';
-
 function Detail() {
   const navigation = useNavigation();
+  const route = useRoute();
+
+  const { incident } = route.params as { incident: Incident };
+
+  const formattedValue = useMemo(
+    () => Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(incident.value),
+    [incident.value]
+  );
+
+  const message = useMemo(
+    () => `Olá ${incident.ong.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" no valor de ${formattedValue}`,
+    [incident.ong.name, incident.title, formattedValue]
+  );
 
   function navigateBack() {
     navigation.goBack();
@@ -22,14 +37,14 @@ function Detail() {
 
   function sendMail() {
     MailComposer.composeAsync({
-      subject: 'Herói do caso: Caso 1',
-      recipients: ['me@thehenry.dev'],
+      subject: `Herói do caso: ${incident.title}`,
+      recipients: [incident.ong.email],
       body: message,
     });
   }
 
   function sendWhatapp() {
-    Linking.openURL(`whatsapp://send?phone=${99}&text=${message}`);
+    Linking.openURL(`whatsapp://send?phone=${incident.ong.whatsapp}&text=${message}`);
   }
 
   return (
@@ -43,13 +58,15 @@ function Detail() {
 
       <View style={styles.incident}>
         <Text style={[styles.incidentProperty, { marginTop: 0 }]}>ONG</Text>
-        <Text style={styles.incidentValue}>APAD</Text>
+        <Text style={styles.incidentValue}>
+          {incident.ong.name} de {incident.ong.city}/{incident.ong.uf}
+        </Text>
 
         <Text style={styles.incidentProperty}>Caso</Text>
-        <Text style={styles.incidentValue}>Caso 1</Text>
+        <Text style={styles.incidentValue}>{incident.title}</Text>
 
         <Text style={styles.incidentProperty}>Valor</Text>
-        <Text style={styles.incidentValue}>R$ 120,00</Text>
+        <Text style={styles.incidentValue}>{formattedValue}</Text>
       </View>
 
       <View style={styles.contactBox}>
