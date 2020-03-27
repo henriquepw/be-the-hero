@@ -16,10 +16,9 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "typeRoots": ["node_modules/@types", "src/@types"],
-    // "paths": {
-    //   "~/*": ["*"],
-    //   "@database/*": ["database/*"]
-    // }
+    "paths": {
+      "~/*": ["*"]
+    }
   },
   "include": ["src"],
   "exclude": ["__tests__/coverage"]

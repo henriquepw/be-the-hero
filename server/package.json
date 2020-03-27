@@ -6,7 +6,10 @@
   "author": "@henry-ns",
   "scripts": {
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "pretest": "cross-env NODE_ENV=test knex migrate:latest",
+    "test": "cross-env NODE_ENV=test jest",
+    "posttest": "cross-env NODE_ENV=test knex migrate:rollback --all"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
