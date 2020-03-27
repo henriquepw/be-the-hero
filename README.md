@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Icon" src="./mobile/assets/icon.png" width="60"/>
+  <img alt="Icon" src="./mobile/assets/icon.png" width="120"/>
 </p>
 <h1 align="center">
   Be The Hero
