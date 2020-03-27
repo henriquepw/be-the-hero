@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 
+import { errors } from 'celebrate';
 import routes from './routes';
 
 class App {
@@ -11,6 +12,7 @@ class App {
 
     this.middleware();
     this.routes();
+    this.handleErros();
   }
 
   private middleware() {
@@ -20,6 +22,10 @@ class App {
 
   private routes() {
     this.server.use(routes);
+  }
+
+  private handleErros() {
+    this.server.use(errors());
   }
 }
 
